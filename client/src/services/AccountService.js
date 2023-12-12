@@ -1,8 +1,9 @@
-import { AppState } from '../AppState'
-import { Account } from '../models/Account.js'
-import { logger } from '../utils/Logger.js'
 import Pop from "../utils/Pop.js";
 import { api } from './AxiosService'
+import { AppState } from '../AppState'
+import { logger } from '../utils/Logger.js'
+import { Account } from '../models/Account.js'
+import { Settings } from '../models/Settings.js'
 
 class AccountService {
 
@@ -28,6 +29,34 @@ class AccountService {
       return null
     }
   }
+
+  async updateProfile(newData) {
+    try {
+      const res = await api.put('/account', newData);
+      AppState.account = new Account(res.data);
+    } catch (error) {
+      Pop.error(error);
+    }
+  }
+
+  async getSettings() {
+    try {
+      const res = await api.get('/account/settings')
+      AppState.settings = new Settings(res.data)
+    } catch (error) {
+      Pop.error(error)
+    }
+  }
+
+  async updateSettings(newData) {
+    try {
+      const res = await api.put('/account/settings', newData);
+      AppState.settings = new Settings(res.data);
+    } catch (error) {
+      Pop.error(error);
+    }
+  }
+
 }
 
 export const accountService = new AccountService()

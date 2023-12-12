@@ -41,7 +41,7 @@ class WeatherService {
     const weatherPoll = new Weather(res.data);
 
     settings.lastPoll = weatherPoll.details.dt
-    if (AppState.account.id) {
+    if (AppState.account?.id) {
       const weather = { lastPoll: settings.lastPoll }
       accountService.updateSettings({ weather });
     }
