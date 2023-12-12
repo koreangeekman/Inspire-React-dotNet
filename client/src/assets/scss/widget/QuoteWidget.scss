@@ -1,0 +1,40 @@
+i {
+  color: orange;
+  text-shadow: 0 0 5px black;
+}
+
+#quote {
+  width: fit-content;
+}
+
+.quoteContent {
+  cursor: help;
+  font-size: large;
+  // width: fit-content;
+}
+
+.quoteInfo {
+  font-size: small;
+  opacity: 0;
+  visibility: hidden;
+  transition: ease-in-out .25s;
+}
+
+.quoteContent:hover+.quoteInfo {
+  opacity: 1;
+  visibility: visible;
+}
+
+.refreshQuote {
+  top: -.8rem;
+  left: -.5rem;
+  text-shadow: 0 0 5px black;
+}
+
+.blueBlur {
+  background-color: #123456b9;
+  color: whitesmoke;
+  border-radius: .25rem;
+  /* width: fit-content; */
+  backdrop-filter: blur(3px);
+}

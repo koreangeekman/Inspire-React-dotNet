@@ -11,6 +11,14 @@ class ObservableAppState {
   /** @type {import('./models/Account.js').Account[]} */
   appAuthors = []
 
+  widgets = { // to anchor the current instance of simple widget data objects
+    /** @type {import('./models/Widget/Weather.js').Weather} */
+    weather: {}, // populated by OpenWeather API on get
+    bgImg: {},
+    quote: {},
+    clock: ''
+  }
+  
   constructor() {
     makeAutoObservable(this)
   }
