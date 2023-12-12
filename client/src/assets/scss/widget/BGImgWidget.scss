@@ -1,0 +1,18 @@
+.BGImgCredit {
+  height: fit-content;
+  width: 250px;
+  border: 1px solid #ffffffb9;
+}
+
+.BGImgCredit p {
+  font-size: .75rem;
+  margin: 0;
+}
+
+.blueBlur {
+  background-color: #123456b9;
+  color: whitesmoke;
+  border-radius: .25rem;
+  /* width: fit-content; */
+  backdrop-filter: blur(3px);
+}

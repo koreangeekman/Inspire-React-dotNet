@@ -5,7 +5,10 @@
 @import "./loaders.scss";
 
 body{
-  overscroll-behavior: none;
+  overscroll-behavior: none;background-image: v-bind(bgImg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 #app {

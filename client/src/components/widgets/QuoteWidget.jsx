@@ -1,5 +1,7 @@
-import React from "react"
 import Pop from "../../utils/Pop";
+import React from "react"
+import Icon from "@mdi/react";
+import { mdiRefreshCircle } from '@mdi/js';
 import { AppState } from "../../AppState";
 import { quotesService } from "../../services/Widgets/QuotesService.js";
 import "../../assets/scss/widget/QuoteWidget.scss"
@@ -25,6 +27,8 @@ export default function QuoteWidget() {
           {/* <p v-for="tag in quote.tags" key="tag" className="blueBlur border py-1 px-2 mx-1 rounded-pill">{ tag }</p> */}
         </div>
       </div>
-      <i className="position-absolute fs-4 refreshQuote mdi mdi-refresh-circle" type="button" onClick={refresh()}></i>
+      <div className="position-absolute refreshQuote" type="button" onClick={refresh}>
+        <Icon path={mdiRefreshCircle} size={1} />
+      </div>
     </div>
     )}
