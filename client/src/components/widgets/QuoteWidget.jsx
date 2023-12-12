@@ -8,13 +8,12 @@ import "../../assets/scss/widget/QuoteWidget.scss"
 
 export default function QuoteWidget() {
   let quote = AppState.widgets.quote;
-  async function _getQuote() {
-    try { await quotesService.getQuote(); }
+  async function getQuote() {
+    try {
+      await quotesService.getQuote();
+      quote = AppState.widgets.quote;
+    }
     catch (error) { Pop.error(error); }
-  }
-  function refresh() {
-    _getQuote()
-    quote = AppState.widgets.quote;
   }
 
   return (
@@ -27,7 +26,7 @@ export default function QuoteWidget() {
           {/* <p v-for="tag in quote.tags" key="tag" className="blueBlur border py-1 px-2 mx-1 rounded-pill">{ tag }</p> */}
         </div>
       </div>
-      <div className="position-absolute refreshQuote" type="button" onClick={refresh}>
+      <div className="position-absolute refreshQuote" type="button" onClick={getQuote}>
         <Icon path={mdiRefreshCircle} size={1} />
       </div>
     </div>
