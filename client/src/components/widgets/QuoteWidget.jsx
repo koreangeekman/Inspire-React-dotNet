@@ -15,9 +15,6 @@ export default function QuoteWidget() {
     quote = AppState.widgets.quote;
   }
 
-  
-  _getQuote();
-  
   return (
     <div className="position-relative">
       <div className="d-flex flex-column align-items-center text-center text-white d-block" id="quote">
