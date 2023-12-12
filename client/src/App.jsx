@@ -8,11 +8,11 @@ export function App() {
 
   return (
     <div className="App" id="app">
-      <header>
+      <header className="z2 sticky-top">
         <Navbar />
       </header>
 
-      <main>
+      <main className="z0">
         <Outlet />
       </main>
 
