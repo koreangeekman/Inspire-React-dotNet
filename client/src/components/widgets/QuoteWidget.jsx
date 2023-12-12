@@ -1,14 +1,19 @@
 import React from "react"
 import Pop from "../../utils/Pop";
 import { AppState } from "../../AppState";
+import { quotesService } from "../../services/Widgets/QuotesService.js";
+import "../../assets/scss/widget/QuoteWidget.scss"
 
 export default function QuoteWidget() {
-  const quote = AppState.widgets.quote 
+  let quote = AppState.widgets.quote;
   async function _getQuote() {
     try { await quotesService.getQuote(); }
     catch (error) { Pop.error(error); }
   }
-  function refresh() { _getQuote() }
+  function refresh() {
+    _getQuote()
+    quote = AppState.widgets.quote;
+  }
 
   
   _getQuote();
@@ -20,7 +25,7 @@ export default function QuoteWidget() {
         <div className="quoteInfo d-flex flex-wrap justify-content-end align-items-center my-2 px-2 py-1">
           <p className="blueBlur border mx-1 py-1 px-2">{ quote.author }</p>
           <p className="blueBlur px-2 rounded-circle"> • </p>
-          <p v-for="tag in quote.tags" key="tag" className="blueBlur border py-1 px-2 mx-1 rounded-pill">{ tag }</p>
+          {/* <p v-for="tag in quote.tags" key="tag" className="blueBlur border py-1 px-2 mx-1 rounded-pill">{ tag }</p> */}
         </div>
       </div>
       <i className="position-absolute fs-4 refreshQuote mdi mdi-refresh-circle" type="button" onClick={refresh()}></i>
