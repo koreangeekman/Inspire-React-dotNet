@@ -5,8 +5,11 @@ import { isValidProp } from "./utils/isValidProp.js"
 class ObservableAppState {
 
   user = null
-  /** @type {import('./models/Account.js').Account} */
+  /** @type {import('./models/Account.js').Account | null} */
   account = null
+  
+  /** @type {import('./models/Account.js').Account[]} */
+  appAuthors = []
 
   constructor() {
     makeAutoObservable(this)

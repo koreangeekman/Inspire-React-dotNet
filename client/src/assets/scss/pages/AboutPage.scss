@@ -1,0 +1,13 @@
+a {
+  color: orange;
+}
+
+a:hover {
+  color: rgb(255, 210, 125);
+}
+
+.bgBlur {
+  backdrop-filter: blur(5px);
+  background-color: #123456b9;
+  color: whitesmoke;
+}
