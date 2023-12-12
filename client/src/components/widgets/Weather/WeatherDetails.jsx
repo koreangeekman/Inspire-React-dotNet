@@ -1,4 +1,5 @@
 import React from "react";
+import "../../../assets/scss/widget/Weather/WeatherDetails.scss"
 
 export default function WeatherDetails(props) {
       function formatSunrise() {

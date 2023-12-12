@@ -5,7 +5,7 @@ import { mdiRefreshCircle } from '@mdi/js';
 import { logger } from "../../../utils/Logger";
 import { AppState } from "../../../AppState";
 import { weatherService } from "../../../services/Widgets/WeatherService.js";
-import "../../../assets/scss/widget/WeatherWidget.scss"
+import "../../../assets/scss/widget/Weather/WeatherWidget.scss"
 import WeatherData from "./WeatherData.jsx";
 import WeatherDetails from "./WeatherDetails.jsx";
 

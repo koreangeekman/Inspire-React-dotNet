@@ -5,7 +5,7 @@ import {
   mdiPlusMinusVariant, 
   mdiFormatVerticalAlignBottom
   } from '@mdi/js';
-
+import "../../../assets/scss/widget/Weather/WeatherData.scss"
 
 export default function WeatherData(props) {
   
