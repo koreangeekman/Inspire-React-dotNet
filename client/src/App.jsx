@@ -16,7 +16,7 @@ export function App() {
         <Outlet />
       </main>
 
-      <footer className="bg-dark text-light text-center p-3 ">
+      <footer>
         <div className="d-flex justify-content-center mx-4 mx-md-5 p-0 pt-4">
           <QuoteWidget />
         </div>
