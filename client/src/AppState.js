@@ -27,6 +27,7 @@ class ObservableAppState {
   settings = {
     todo: {
       showAll: true,
+      sortOpt: 'none' // alpha, -alpha, createAt, -createAt, updatedAt, -updatedAt, length, -length
     },
     pomodoro: {
       workTime: 25,

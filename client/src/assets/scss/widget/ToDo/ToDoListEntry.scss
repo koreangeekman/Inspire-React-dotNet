@@ -14,18 +14,18 @@ i {
   visibility: hidden;
 }
 
-.mdi-pencil,
-.mdi-trash-can {
+.mdiPencil,
+.mdiTrashCan {
   opacity: .8;
   transition: .25s;
 }
 
-.mdi-pencil:hover,
-.mdi-trash-can:hover {
+.mdiPencil:hover,
+.mdiTrashCan:hover {
   transform: scale(1.2);
 }
 
-.mdi-cancel {
+.mdiCancel {
   margin-left: -.15rem;
 }
 

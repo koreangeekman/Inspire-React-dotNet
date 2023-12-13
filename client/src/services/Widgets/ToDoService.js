@@ -4,28 +4,28 @@ import { logger } from "../../utils/Logger.js";
 import { api } from "../AxiosService.js";
 
 
-function _sortMany(arr, options) { // options = [{ field : 'key' , order : 'asc|desc' }]
-  for (const opt in options) {
-    arr.sort((a, b) => {
-      const aVal = a[opt.field];
-      const bVal = b[opt.field];
+// function _sortMany(arr, options) { // options = [{ field : 'key' , order : 'asc|desc' }]
+//   for (const opt in options) {
+//     arr.sort((a, b) => {
+//       const aVal = a[opt.field];
+//       const bVal = b[opt.field];
 
-      let comp = 0;
-      if (aVal > bVal) { comp = 1 }
-      if (aVal < bVal) { comp = -1 }
+//       let comp = 0;
+//       if (aVal > bVal) { comp = 1 }
+//       if (aVal < bVal) { comp = -1 }
 
-      return opt.order == 'asc' ? comp : comp * -1;
-    }
-    )
-  }
-}
+//       return opt.order == 'asc' ? comp : comp * -1;
+//     }
+//     )
+//   }
+// }
 
 
 class ToDoService {
 
-  sortByFilters(options) {
-    _sortMany(AppState.todos, options);
-  }
+  // sortByFilters(options) {
+  //   _sortMany(AppState.todos, options);
+  // }
 
   // SECTION 🔽 AUTHENTICATION REQUIRED 🔽
 
@@ -58,14 +58,14 @@ class ToDoService {
   }
 
   async updateToDo(todoObj) {
-    if (todoObj.creatorId != AppState.account.id) { throw new Error('Not yours to edit') }
+    if (todoObj.creatorId != AppState.account?.id) { throw new Error('Not yours to edit') }
     const res = await api.put(`api/todos/${todoObj.id}`, todoObj)
     todoObj.edit = false;
     logger.log('[TODO SERVICE] updateToDo(): [res.data]', res.data);
   }
 
   async removeToDo(todoObj) {
-    if (todoObj.creatorId != AppState.account.id) { throw new Error('Not yours to remove') }
+    if (todoObj.creatorId != AppState.account?.id) { throw new Error('Not yours to remove') }
     const res = await api.delete(`api/todos/${todoObj.id}`)
     AppState.todos = AppState.todos.filter(todo => todo.id != todoObj.id);
     logger.log('[TODO SERVICE] removeToDo(): [res.data]', res.data);
