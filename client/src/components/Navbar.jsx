@@ -1,23 +1,11 @@
 import React from "react";
-import Icon from "@mdi/react";
-import { mdiImageRefresh } from '@mdi/js';
 import "../assets/scss/components/Navbar.scss"
 import Login from "./Login.jsx";
-import Pop from "../utils/Pop.js";
+import { Link } from "react-router-dom";
 import logo from '../assets/img/powersymbol2048.png';
 import BGImgWidget from "./widgets/BGImgWidget.jsx";
-import { bgImageService } from "../services/Widgets/BGImageService.js";
-import { AppState } from "../AppState.js";
-import { Link } from "react-router-dom";
 
 export function Navbar() {
-
-  async function changeBG() {
-    try {
-      await bgImageService.getBGImg();
-      document.body.style.backgroundImage = `url('${AppState.widgets.bgImg.largeImgUrl}')`;
-    } catch (error) { Pop.error(error); }
-  }
   
   return (
     <nav className="navbar navbar-expand-lg navbar-dark shadow bg-dark px-3">
@@ -56,13 +44,7 @@ export function Navbar() {
           <div className="bar mx-2"></div>
 
           <li className="d-flex align-items-center position-relative my-2 my-md-0">
-            <button title="Change background" onClick={changeBG} type="button"
-              className="m-1 btn text-primary lighten-30 selectable text-uppercase showInfo">
-              <Icon path={mdiImageRefresh} title="Change background image" size={1.35} />
-            </button>
-            <div className="BGImgControls hide d-flex justify-content-start position-absolute mx-3 p-0">
-              <BGImgWidget />
-            </div>
+            <BGImgWidget />
           </li>
 
           <div className="bar mx-2"></div>

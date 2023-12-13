@@ -1,19 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { observer } from "mobx-react";
 import { AppState } from "../AppState";
 import { mdiTire } from "@mdi/js"
 import Icon from "@mdi/react";
 import "../assets/scss/pages/HomePage.scss"
-import Pop from "../utils/Pop";
 import ToDoWidget from "../components/widgets/ToDo/ToDoWidget.jsx";
-import { toDoService } from "../services/Widgets/ToDoService";
 
 function HomePage() {
-  async function getToDos() {
-    try { await toDoService.getToDos(); }
-    catch (error) { Pop.error(error); }
-  }
-  // getToDos()
 
   return (
   <div className="position-relative">
@@ -31,11 +24,11 @@ function HomePage() {
           </div>
             ) : (
           <div className="col-12 p-5 d-flex justify-content-center">
-            <button className="fs-1 text-white blueBlur rounded-pill px-3 d-flex align-items-center" onClick={getToDos}>
-              <Icon path={mdiTire} size={2} className="mdiSpin" />
+            <div className="fs-1 text-white blueBlur rounded-pill p-3 d-flex align-items-center">
+              <Icon path={mdiTire} size={2} className="mdi-spin" />
               <p className="mb-0 mx-3 fs-3">LOADING</p>
               <Icon path={mdiTire} size={2} className="mdiSpin" />
-            </button>
+            </div>
           </div>
           )}
           

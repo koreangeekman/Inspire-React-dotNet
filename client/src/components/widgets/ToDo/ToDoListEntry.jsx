@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Pop from "../../../utils/Pop";
 import { toDoService } from "../../../services/Widgets/ToDoService.js";
 import Icon from "@mdi/react";
@@ -45,6 +45,9 @@ export default function ToDoListEntry({ todo }) {
     } catch (error) { Pop.error(error); }
   }
 
+  const todoData = useRef({ body: todo.body });
+  
+  logger.log('todoData',todoData.current.body);
   function drawEditOptions1() {
     if (todo.edit) {
       return (
@@ -52,7 +55,7 @@ export default function ToDoListEntry({ todo }) {
         <button className="text-secondary mdiCancel btn p-0" type="button" title="Cancel edit" tabIndex={0} onClick={cancelEdit}>
           <Icon path={mdiCancel} size={1} />
         </button>
-        <input id="editMe" type="text" className="ms-2 me-3 form-control" onBlur={saveEdit} />
+        <input ref={todoData.current} name="body" type="text" className="ms-2 me-3 form-control" onBlur={saveEdit} />
       </>
     )
     } else {

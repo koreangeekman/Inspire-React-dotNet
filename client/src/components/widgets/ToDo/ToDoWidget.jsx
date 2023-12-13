@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { observer } from "mobx-react";
 import { AppState } from "../../../AppState.js";
 import { toDoService } from "../../../services/Widgets/ToDoService.js";
@@ -10,6 +10,15 @@ import { mdiPlusBox, mdiSortBoolAscendingVariant, mdiBroom } from '@mdi/js';
 
 function ToDoWidget() {
   const [todos, setToDos] = useState([...AppState.todos]);
+
+  useEffect(() => { getToDos() }, []);
+  async function getToDos() {
+    try {
+      await toDoService.getToDos();
+      setToDos(AppState.todos);
+    }
+    catch (error) { Pop.error(error); }
+  }
 
   function drawToDos() {
     let arr = [...AppState.todos];
