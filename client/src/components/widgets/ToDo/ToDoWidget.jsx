@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { observer } from "mobx-react";
 import { AppState } from "../../../AppState.js";
 import { toDoService } from "../../../services/Widgets/ToDoService.js";
-// import ToDoListEntry from "./ToDoListEntry.jsx";
+import ToDoListEntry from "./ToDoListEntry.jsx";
 import Pop from "../../../utils/Pop";
 import "../../../assets/scss/widget/ToDo/ToDoWidget.scss"
 import Icon from "@mdi/react";
@@ -34,11 +34,7 @@ function ToDoWidget() {
         setToDos(arr.filter(todo => !todo.isCompleted));
       }
   }
-  
-  // drawToDos();
-  
 
-  // const newToDo = useRef('');
   async function createToDo(event) {
     try {
       event.preventDefault();
@@ -122,7 +118,7 @@ function ToDoWidget() {
 
         <hr className="my-1" />
 
-        {/* { AppState.todos.map(todo => <ToDoListEntry key={todo.id} todo={todo} /> ) } */}
+        { AppState.todos.map(todo => <ToDoListEntry key={todo.id} todo={todo} /> ) }
       </section>
     </div>
   )

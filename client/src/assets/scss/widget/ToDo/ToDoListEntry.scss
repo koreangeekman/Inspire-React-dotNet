@@ -6,22 +6,27 @@ input[type="checkbox"] {
   width: 1.2rem;
 }
 
-i {
-  text-shadow: 0 0 8px black;
-}
-
 .invisible {
   visibility: hidden;
 }
 
 .mdiPencil,
 .mdiTrashCan {
+  text-shadow: 0 0 8px black;
   opacity: .8;
   transition: .25s;
 }
 
+.mdiCancel,
+.mdiContentSave{
+  text-shadow: 0 0 8px black;
+  transition: .25s;
+}
+
+.mdiCancel:hover,
 .mdiPencil:hover,
-.mdiTrashCan:hover {
+.mdiTrashCan:hover,
+.mdiContentSave:hover {
   transform: scale(1.2);
 }
 
