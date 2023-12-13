@@ -1,0 +1,47 @@
+hr,
+i,
+.orange {
+  color: orange;
+  text-shadow: 0 0 5px black;
+}
+
+.headerIcon {
+  line-height: 1rem;
+}
+
+.mdi-plus-box {
+  line-height: 3.2rem;
+}
+
+.bar {
+  border-left: 1px dashed grey;
+}
+
+.card {
+  background-color: #123456b0;
+  color: whitesmoke;
+  width: fit-content;
+  backdrop-filter: blur(2px);
+}
+
+.blur {
+  background-color: #12345678;
+  backdrop-filter: blur(5px);
+}
+
+.hiddenToggleNote {
+  opacity: 0;
+  visibility: hidden;
+  transition: .25s;
+  left: -.5rem;
+  top: 1.85rem;
+}
+
+.showToggleNote:hover+.hiddenToggleNote {
+  opacity: .95;
+  visibility: visible;
+}
+
+.todoForm {
+  top: 76px;
+}

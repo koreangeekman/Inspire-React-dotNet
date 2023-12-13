@@ -2,7 +2,7 @@ import React from "react";
 import Pop from "../../utils/Pop";
 import { AppState } from "../../AppState";
 import "../../assets/scss/widget/BGImgWidget.scss"
-import { bgImageService } from "../../services/Widgets/BGImageService";
+import { bgImageService } from "../../services/Widgets/BGImageService.js";
 
 export default function BGImgWidget() {
   const bgImg = AppState.widgets.bgImg;

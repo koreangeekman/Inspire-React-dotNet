@@ -1,6 +1,7 @@
 import React from "react";
 import { AppState } from "../AppState";
 import "../assets/scss/pages/HomePage.scss"
+import ToDoWidget from "../components/widgets/ToDo/ToDoWidget.jsx";
 
 export default function HomePage() {
   const account = AppState.account;

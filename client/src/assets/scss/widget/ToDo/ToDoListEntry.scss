@@ -1,0 +1,52 @@
+input[type="text"] {
+  width: 100%;
+}
+
+input[type="checkbox"] {
+  width: 1.2rem;
+}
+
+i {
+  text-shadow: 0 0 8px black;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.mdi-pencil,
+.mdi-trash-can {
+  opacity: .8;
+  transition: .25s;
+}
+
+.mdi-pencil:hover,
+.mdi-trash-can:hover {
+  transform: scale(1.2);
+}
+
+.mdi-cancel {
+  margin-left: -.15rem;
+}
+
+.listItem {
+  border-radius: .25rem;
+}
+
+.offlineOutline {
+  border: 1px dashed red;
+  opacity: .5;
+}
+
+.hidden {
+  opacity: 0;
+  transition: .25s;
+}
+
+.hidden:hover {
+  opacity: 1;
+}
+
+.shown:hover+.hidden {
+  opacity: 1;
+}
