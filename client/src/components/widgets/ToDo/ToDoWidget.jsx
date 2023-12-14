@@ -50,6 +50,7 @@ function ToDoWidget() {
     // }
 
     // arr = sortList();
+    logger.log('draw list')
 
     if (set.showAll) {
       setToDos(arr);
@@ -57,13 +58,15 @@ function ToDoWidget() {
     } else {
       setToDos(arr.filter(todo => !todo.isCompleted));
     }
+    filterIncomplete([...todos.filter(todo => !todo.isCompleted)]);
+    filterCompleted([...todos.filter(todo => todo.isCompleted)])
   }
 
   async function createToDo(event) {
     try {
       event.preventDefault();
       await toDoService.createToDo({ body: event.target.body.value });
-      filterIncomplete([...AppState.todos.filter(todo => !todo.isCompleted)]);
+      drawToDos();
       event.target.reset();
     }
     catch (error) { Pop.error(error); }
@@ -74,7 +77,7 @@ function ToDoWidget() {
       const yes = await Pop.confirm('Remove all completed entries?');
       if (!yes) { return }
       await toDoService.removeAllCompleted();
-      filterCompleted([...AppState.todos.filter(todo => todo.isCompleted)])
+      drawToDos();
     } catch (error) { Pop.error(error); }
   }
 
@@ -142,7 +145,7 @@ function ToDoWidget() {
 
         <hr className="my-1" />
 
-        {AppState.todos.map(todo => <ToDoListEntry key={todo.id} todoEntry={todo} />)}
+        {AppState.todos.map(todo => <ToDoListEntry key={todo.id} todoEntry={todo} drawToDos={drawToDos} />)}
 
       </section>
     </div>

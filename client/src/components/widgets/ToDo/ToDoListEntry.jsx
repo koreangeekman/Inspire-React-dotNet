@@ -11,7 +11,7 @@ import {
 import "../../../assets/scss/widget/ToDo/ToDoListEntry.scss"
 import { logger } from "../../../utils/Logger.js";
 
-export default function ToDoListEntry({ todoEntry }) {
+export default function ToDoListEntry({ todoEntry, drawToDos }) {
   const [todo, setToDo] = useState(todoEntry);
 
   // SECTION 'controller' functions
@@ -21,6 +21,7 @@ export default function ToDoListEntry({ todoEntry }) {
       todo.isCompleted = !todo.isCompleted;
       setToDo({ ...todo }); // spread operator forces the state to register a change
       await toDoService.updateToDo(todo);
+      drawToDos()
     } catch (error) { Pop.error(error); }
   }
 
@@ -54,6 +55,7 @@ export default function ToDoListEntry({ todoEntry }) {
       const yes = await Pop.confirm('Remove this ToDo entry?');
       if (!yes) { return }
       await toDoService.removeToDo(todo);
+      drawToDos()
     } catch (error) { Pop.error(error); }
   }
 
