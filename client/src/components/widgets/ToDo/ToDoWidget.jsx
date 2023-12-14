@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react";
 import { AppState } from "../../../AppState.js";
 import { toDoService } from "../../../services/Widgets/ToDoService.js";

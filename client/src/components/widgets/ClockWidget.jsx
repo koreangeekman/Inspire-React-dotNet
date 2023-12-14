@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Pop from "../../utils/Pop";
 import { AppState } from "../../AppState";
 import { clockService } from "../../services/Widgets/ClockService.js";
 import "../../assets/scss/widget/ClockWidget.scss"
 
 export default function ClockWidget() {
+  const [currentTime, setCurrentTime] = useState('');
+
+  useEffect(() => {
+    greetings();
+    setInterval(clockHandler, 1000);
+  },[])
+
+  function clockHandler() {
+    setCurrentTime(drawClock())
+  }
+
   
-    function _greetings() {
+    function greetings() {
       const hour = new Date().getHours();
       let ToD = '';
       if (hour < 3) {
@@ -27,7 +38,7 @@ export default function ClockWidget() {
       Pop.success(ToD)
     }
 
-    function _drawClock() {
+    function drawClock() {
       const date = new Date(); let ampm = '';
       let hh = date.getHours(); let mm = date.getMinutes(); let ss = date.getSeconds();
       if (AppState.settings.clock.timeFormat == 12) {
@@ -43,17 +54,17 @@ export default function ClockWidget() {
           ampm = 'am';
         }
       }
-      AppState.widgets.clock = hh + (ss % 2 == 0 ? '<span class="text-secondary">:</span>' : ':') + (mm < 10 ? '0' + mm : mm) + `${ampm}`
+      const timeString = hh + ':' + (mm < 10 ? '0' + mm : mm) + `${ampm}`
+      // const timeString = hh + (ss % 2 == 0 ? '<span class="text-secondary">:</span>' : ':') + (mm < 10 ? '0' + mm : mm) + `${ampm}`
+      // AppState.widgets.clock = timeString;
+      return timeString;
   }
   
   function toggleFormat() {
     clockService.toggleFormat();
   }
   
-  _greetings();
-  setInterval(_drawClock, 500);
-
   return (
-    <p className="fs-1 mb-0 clock" v-html={currentTime} onClick={toggleFormat}></p>
+    <p className="mb-0 clock fs-2" onClick={toggleFormat}>{currentTime}</p>
   )
 }
