@@ -1,4 +1,4 @@
-i,
+.refresh,
 hr {
   color: orange;
   text-shadow: 0 0 5px black;
@@ -30,21 +30,23 @@ hr {
 }
 
 .refresh {
-  bottom: -.9rem;
-  right: -.5rem;
+  bottom: -.8rem;
+  right: -.8rem;
 }
 
 .hidden {
+  visibility: hidden;
   opacity: 0;
   transition: .25s;
-  top: 4rem;
+  top: 3.6rem;
 }
 
 .temp:hover+.hidden {
+  visibility: visible;
   opacity: 1;
 }
 
-@media screen and (max-width:1100px) {
+@media screen and (max-width:992px) {
   .hidden {
     top: 0;
     left: 5.5rem;

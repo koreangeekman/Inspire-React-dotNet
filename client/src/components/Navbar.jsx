@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import logo from '../assets/img/powersymbol2048.png';
 import BGImgWidget from "./widgets/BGImgWidget.jsx";
 import ClockWidget from "./widgets/ClockWidget.jsx";
+import WeatherWidget from "./widgets/Weather/WeatherWidget.jsx";
 
 export function Navbar() {
   
@@ -51,7 +52,7 @@ export function Navbar() {
           <div className="bar mx-2"></div>
 
           <li className="d-flex align-items-center mx-4 my-2 my-md-0">
-            {/* <WeatherWidget /> */}
+            <WeatherWidget />
           </li>
 
           <div className="bar mx-2"></div>

@@ -19,7 +19,7 @@ export const weatherAPI = Axios.create({ // returns 5 day forecast results per 3
   baseURL: 'https://api.openweathermap.org/data/2.5/weather',
   timeout: 5000,
   params: {
-    appid: ''
+    appid: 'dee0e73cd11c32c4b232ebc392880683'
   }
 })
 
