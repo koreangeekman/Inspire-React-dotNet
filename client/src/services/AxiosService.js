@@ -23,4 +23,4 @@ export const weatherAPI = Axios.create({ // returns 5 day forecast results per 3
   }
 })
 
-api.defaults.headers.authorization = JSON.parse(localStorage.getItem('user-token'))
+api.defaults.headers.authorization = JSON.parse(localStorage.getItem('user-token'));

@@ -1,7 +1,7 @@
 import React from "react";
 import "../assets/scss/components/Navbar.scss"
-import Login from "./Login.jsx";
 import { Link } from "react-router-dom";
+import Login from "./Login.jsx";
 import logo from '../assets/img/powersymbol2048.png';
 import BGImgWidget from "./widgets/BGImgWidget.jsx";
 import ClockWidget from "./widgets/ClockWidget.jsx";
