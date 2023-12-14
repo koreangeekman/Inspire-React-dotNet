@@ -62,8 +62,8 @@ export default function WeatherWidget() {
 
   return (
     <section className="position-relative">
-      <button className="position-absolute refresh btn p-0" type="button" title="Update weather data" onClick={refreshWeather}>
-        <Icon path={mdiRefreshCircle} size={.8} />
+      <button className="position-absolute refresh rounded-circle btn p-0 d-flex" type="button" title="Update weather data" onClick={refreshWeather}>
+        <Icon path={mdiRefreshCircle} size={1} />
       </button>
       <div className="temp rounded">
         <p className="fs-2 mb-0 px-2" onClick={changeTempType}>

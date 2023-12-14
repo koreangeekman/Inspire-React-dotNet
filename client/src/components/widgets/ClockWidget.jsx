@@ -65,6 +65,6 @@ export default function ClockWidget() {
   }
   
   return (
-    <p className="mb-0 clock fs-2" onClick={toggleFormat}>{currentTime}</p>
+    <p className="mb-0 clock fs-1" onClick={toggleFormat}>{currentTime}</p>
   )
 }
