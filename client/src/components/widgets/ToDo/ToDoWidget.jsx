@@ -12,6 +12,18 @@ import { logger } from "../../../utils/Logger.js";
 function ToDoWidget() {
   const [todos, setToDos] = useState([...AppState.todos]);
 
+  const [incomplete, filterIncomplete] = useState([...AppState.todos.filter(todo => !todo.isCompleted)]);
+  const [completed, filterCompleted] = useState([...AppState.todos.filter(todo => todo.isCompleted)]);
+
+  // TODO  update counts, get filtering working
+
+  // SECTION 'controller' functions
+
+  function toggleCompleted() {
+    toDoService.toggleCompleted()
+    drawToDos();
+  }
+
   // useEffect(() => { getToDos() }, []); // extracted to home page due to conditional draw requiring todos
 
   // async function getToDos() {
@@ -23,7 +35,7 @@ function ToDoWidget() {
   // }
 
   function drawToDos() {
-    let arr = todos;
+    let arr = [...AppState.todos];
     let set = AppState.settings.todo;
     // function sortList() {
     // if (set.sortOpt == 'alpha') { return arr.sort((a, b) => a.body - b.body) }
@@ -40,7 +52,7 @@ function ToDoWidget() {
     // arr = sortList();
 
     if (set.showAll) {
-      // setToDos(arr);
+      setToDos(arr);
       logger.log('show all')
     } else {
       setToDos(arr.filter(todo => !todo.isCompleted));
@@ -51,7 +63,8 @@ function ToDoWidget() {
     try {
       event.preventDefault();
       await toDoService.createToDo({ body: event.target.body.value });
-      filterIncomplete([...AppState.todos.filter(todo => !todo.isCompleted)])
+      filterIncomplete([...AppState.todos.filter(todo => !todo.isCompleted)]);
+      event.target.reset();
     }
     catch (error) { Pop.error(error); }
   }
@@ -65,15 +78,7 @@ function ToDoWidget() {
     } catch (error) { Pop.error(error); }
   }
 
-  function toggleCompleted() {
-    toDoService.toggleCompleted()
-  }
-
-  const [incomplete, filterIncomplete] = useState([...AppState.todos.filter(todo => !todo.isCompleted)]);
-  const [completed, filterCompleted] = useState([...AppState.todos.filter(todo => todo.isCompleted)]);
-
-  logger.log('incomplete', incomplete);
-  logger.log('completed', completed);
+  // SECTION functions for conditionally inserting content
 
   function remainingToDo() {
     if (todos.length == incomplete.length) {
@@ -97,9 +102,11 @@ function ToDoWidget() {
     }
   }
 
+  // SECTION return html content
+
   return (
     <div>
-      <form className="d-flex align-items-center rounded my-2 blur sticky-top todoForm" onSubmit={createToDo}>
+      <form className="d-flex align-items-center rounded my-2 blur sticky-top todoForm" id="newToDoForm" onSubmit={createToDo}>
         <input className="form-control ms-2 shadow" type="text" name="body" placeholder="New ToDo?" required />
         <button className="btn p-1 mdiPlusBox d-flex" type="submit" tabIndex={0} title="Add ToDo">
           <Icon path={mdiPlusBox} size={1.86} />

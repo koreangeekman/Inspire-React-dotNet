@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Pop from "../../../utils/Pop";
 import { toDoService } from "../../../services/Widgets/ToDoService.js";
 import Icon from "@mdi/react";
@@ -14,16 +14,12 @@ import { logger } from "../../../utils/Logger.js";
 export default function ToDoListEntry({ todoEntry }) {
   const [todo, setToDo] = useState(todoEntry);
 
-  useEffect(() => {
-
-  }, [])
-
   // SECTION 'controller' functions
 
   async function toggleCompleted() {
     try {
       todo.isCompleted = !todo.isCompleted;
-      setToDo({ ...todo });
+      setToDo({ ...todo }); // spread operator forces the state to register a change
       await toDoService.updateToDo(todo);
     } catch (error) { Pop.error(error); }
   }
@@ -32,6 +28,7 @@ export default function ToDoListEntry({ todoEntry }) {
     todo.edit = true;
     setToDo({ ...todo });
     logger.log('enableEdit(): Editing enabled', `on "${todo.body}"`);
+    // document.getElementById('editMe')?.innerHTML = todo.body;
     // document.getElementById('enableEdit')?.addEventListener('click', () => {
     //   document.getElementById('editMe')?.focus();
     // })
@@ -45,6 +42,7 @@ export default function ToDoListEntry({ todoEntry }) {
 
   async function saveEdit() {
     try {
+      todo.body = newBody;
       await toDoService.updateToDo(todo);
       todo.edit = false;
       setToDo({ ...todo });
@@ -59,16 +57,22 @@ export default function ToDoListEntry({ todoEntry }) {
     } catch (error) { Pop.error(error); }
   }
 
-  // SECTION functions for draw
+  // SECTION functions for conditionally showing list entry draw (edit vs normal)
 
-  function drawEditOptions1() {
+  const [newBody, setNewBody] = useState(todo.body); // todo body 'bind'
+
+  function bodyChangeHandler(event) {
+    setNewBody(event.target.value)
+  }
+
+  function drawModeElementsStart() { // Cancel + input[text] --vs-- input[checkbox] + p
     if (todo.edit) {
       return (
         <>
           <button className="text-secondary mdiCancel btn p-0" type="button" title="Cancel edit" tabIndex={0} onClick={cancelEdit}>
             <Icon path={mdiCancel} size={1} />
           </button>
-          <input name="body" type="text" className="ms-2 me-3 form-control" onBlur={saveEdit} />
+          <input defaultValue={newBody} id="editMe" name="body" type="text" className="ms-2 me-3 form-control" onChange={bodyChangeHandler} />
         </>
       )
     } else {
@@ -83,7 +87,7 @@ export default function ToDoListEntry({ todoEntry }) {
     }
   }
 
-  function drawEditOptions2() {
+  function drawModeElementsEnd() { // buttons
     if (!todo.edit && todo.isCompleted) {
       return (
         <button className="invisible mdiPencil btn p-0">
@@ -110,11 +114,11 @@ export default function ToDoListEntry({ todoEntry }) {
   return (
     <div className="d-flex align-items-center justify-content-end rounded shadow p-1 ps-2 pb-2">
       <span className="d-flex w-100 shown">
-        {drawEditOptions1()}
+        {drawModeElementsStart()}
       </span>
       <span className={!todo.edit ? 'd-flex hidden' : 'd-flex'}>
         <span className="d-flex mx-3">
-          {drawEditOptions2()}
+          {drawModeElementsEnd()}
         </span>
         <button className="text-danger mdiTrashCan btn p-0" type="button" tabIndex={0} title="Remove entry" onClick={removeToDo}>
           <Icon path={mdiTrashCan} size={1} />
