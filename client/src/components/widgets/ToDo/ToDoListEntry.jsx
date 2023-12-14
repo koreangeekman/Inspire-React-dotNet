@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import Pop from "../../../utils/Pop";
 import { toDoService } from "../../../services/Widgets/ToDoService.js";
 import Icon from "@mdi/react";
@@ -114,11 +114,11 @@ export default function ToDoListEntry({ todoEntry, drawToDos }) {
   // SECTION return html content
 
   return (
-    <div className="d-flex align-items-center justify-content-end rounded shadow p-1 ps-2 pb-2">
+    <div className="d-flex align-items-center justify-content-end rounded shadow p-1 ps-2 mb-1">
       <span className="d-flex w-100 shown">
         {drawModeElementsStart()}
       </span>
-      <span className={!todo.edit ? 'd-flex hidden' : 'd-flex'}>
+      <span className={!todo.edit ? 'd-flex hiddenBtn' : 'd-flex'}>
         <span className="d-flex mx-3">
           {drawModeElementsEnd()}
         </span>

@@ -43,15 +43,15 @@ input[type="checkbox"] {
   opacity: .5;
 }
 
-.hidden {
+.hiddenBtn {
   opacity: 0;
   transition: .25s;
 }
 
-.hidden:hover {
+.hiddenBtn:hover {
   opacity: 1;
 }
 
-.shown:hover+.hidden {
+.shown:hover~.hiddenBtn {
   opacity: 1;
 }
